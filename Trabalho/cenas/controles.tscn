@@ -1,0 +1,125 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Trabalho/Assets/Fundo/playerLife1_orange.png" type="Texture" id=1]
+[ext_resource path="res://Trabalho/Assets/Fundo/black.png" type="Texture" id=2]
+[ext_resource path="res://Trabalho/Scripts/controles.gd" type="Script" id=3]
+[ext_resource path="res://Trabalho/Assets/Icones/cc9ed077aed46f5.png" type="Texture" id=4]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform float vel = .7;
+uniform float des = 0; 
+
+void fragment(){
+	COLOR = texture(TEXTURE, UV + (vec2(0, -1) * TIME * vel) + vec2(des,0));
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/vel = 0.7
+shader_param/des = 0.0
+
+[sub_resource type="DynamicFontData" id=5]
+antialiased = false
+font_path = "res://Trabalho/Assets/Fonte/upheavtt.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 30
+font_data = SubResource( 5 )
+
+[sub_resource type="DynamicFontData" id=9]
+antialiased = false
+font_path = "res://Trabalho/Assets/Fonte/upheavtt.ttf"
+
+[sub_resource type="DynamicFont" id=10]
+size = 50
+font_data = SubResource( 9 )
+
+[sub_resource type="DynamicFontData" id=7]
+antialiased = false
+font_path = "res://Trabalho/Assets/Fonte/upheavtt.ttf"
+
+[sub_resource type="DynamicFont" id=8]
+size = 50
+font_data = SubResource( 7 )
+
+[node name="controles" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="fundoMenu" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="sprite" type="Sprite" parent="fundoMenu"]
+material = SubResource( 4 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 540, 960 )
+
+[node name="texto" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="texto"]
+margin_left = 11.0
+margin_top = 212.0
+margin_right = 699.0
+margin_bottom = 446.0
+custom_fonts/font = SubResource( 6 )
+text = "A NAVE SEGUE O CURSOR
+
+BOTAO ESQUERDO OU ESPAÇO - TIRO
+
+BOTAO DIREITO - ESCUDO
+"
+
+[node name="Label2" type="Label" parent="texto"]
+margin_left = 11.0
+margin_top = 478.0
+margin_right = 699.0
+margin_bottom = 712.0
+custom_fonts/font = SubResource( 6 )
+text = "ENQUANTO ESTE ICONE     APARECER
+O JOGADOR PODERA USAR O ESCUDO 
+FICANDO INVENCIVEL POR ALGUNS
+SEGUNDO
+
+"
+
+[node name="Label3" type="Label" parent="texto"]
+margin_left = 123.0
+margin_top = 123.0
+margin_right = 811.0
+margin_bottom = 357.0
+custom_fonts/font = SubResource( 10 )
+text = "CONTROLES
+"
+
+[node name="Label4" type="Label" parent="texto"]
+margin_left = 171.0
+margin_top = 398.0
+margin_right = 859.0
+margin_bottom = 632.0
+custom_fonts/font = SubResource( 10 )
+text = "DICAS"
+
+[node name="Sprite" type="Sprite" parent="texto"]
+position = Vector2( 347, 494 )
+scale = Vector2( 0.133333, 0.133333 )
+texture = ExtResource( 4 )
+
+[node name="voltar" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="voltar"]
+margin_left = -119.0
+margin_top = 879.0
+margin_right = 463.0
+margin_bottom = 1067.0
+custom_fonts/font = SubResource( 8 )
+text = "VOLTAR
+"
+align = 1
+
+[node name="PlayerLife1Orange" type="Sprite" parent="voltar"]
+position = Vector2( 49, 903 )
+scale = Vector2( 1.30769, 1.30769 )
+texture = ExtResource( 1 )
